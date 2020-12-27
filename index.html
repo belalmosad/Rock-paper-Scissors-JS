@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rock Paper Scissors</title>
+</head>
+<body>
+
+
+
+
+		<script type="text/javascript">
+			
+			let gameChoices = ["Rock", "Paper", "Scissors"];
+			function computerSelection() {
+				let randomIndex = Math.floor(Math.random()*3);
+				return gameChoices[randomIndex];
+			}
+			function adjustInput(input) {
+				return input[0].toUpperCase() + input.slice(1).toLowerCase();
+			}
+			function validatePlayerInput(playerInput) {
+				if (!gameChoices.includes(playerInput)) {
+					alert("Please Enter valid value");
+					playerSelection();
+				} else
+				{
+					return playerInput;
+				}
+
+			}
+
+			let playerSelection = () => validatePlayerInput(adjustInput(prompt("Enter your selection (Rock, Paper, Scissors)")));
+
+			function playRound(playerSelection, gameSelection) {
+					if(playerSelection === gameSelection) return ;
+					if(playerSelection === "Rock")
+					{
+						if(gameSelection === "Scissors") {
+							console.log("player wins");
+							return 'p';
+						}
+						if(gameSelection === "Paper") {
+							console.log("computer wins");
+							return 'g';
+						}
+					}
+					if(playerSelection === "Paper")
+					{
+						if(gameSelection === "Scissors") 
+						{
+							console.log("Computer wins");
+							return 'g';
+						}
+						if(gameSelection === "Rock") 
+						{
+							console.log("Player wins");
+							return 'p';
+						}
+					}
+					if(playerSelection === "Scissors")
+					{
+						if(gameSelection === "Paper") 
+						{
+							console.log("Player wins");
+							return 'p';
+						}
+						if(gameSelection === "Rock") 
+						{
+							console.log("Gamer wins");
+							return 'g';
+						}
+					}
+			}
+
+			function game() {
+				let userScore = 0;
+				let computerScore = 0;
+				for(let i = 0; i < 5; i++)
+				{
+					let result = playRound(playerSelection(), computerSelection());
+					if (result === 'p') userScore++;
+					if(result === 'g') computerScore++;
+				}
+
+				if(userScore > computerScore) console.log("User Wins!!");
+				else if (computerSelection > userScore) console.log("Computer wins");
+				else console.log("Tieeeee :(((");
+			}
+
+
+
+
+
+		</script>
+
+</body>
+</html>
